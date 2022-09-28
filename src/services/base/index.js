@@ -9,7 +9,7 @@ export const baseNetwork = {
         let responseData = [];
         await axiosInstance.get(url)
             .then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     responseData = res.data;
                 }
                 else {

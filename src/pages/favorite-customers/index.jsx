@@ -18,7 +18,7 @@ const FavoriteCustomers = () => {
 
   const handleRemoveAll = () => {
     console.log(favoriteCustomers.length);
-    if (favoriteCustomers.length != 0) {
+    if (favoriteCustomers.length !== 0) {
       if (window.confirm('Are you sure??')) {
         dispatch(emptyFavoritesAction())
       }
