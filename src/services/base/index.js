@@ -13,7 +13,7 @@ export const baseNetwork = {
                     responseData = res.data;
                 }
                 else {
-                    throw "custom error"
+                    throw new Error('custom error');
                 }
             })
             .catch(err => {
