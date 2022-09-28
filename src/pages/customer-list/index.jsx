@@ -4,6 +4,7 @@ import { Table, Button } from 'antd';
 import 'antd/dist/antd.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavoritesAction } from '../../redux/actions/customers.actions';
+import { Content } from 'antd/lib/layout/layout';
 
 const CustomerList = () => {
 
@@ -49,13 +50,15 @@ const CustomerList = () => {
       title: "Add to Favorites",
       dataIndex: "id",
       key: "id",
-      render: (value, data) => <Button onClick={() => addToFavorites(data)} style={{ backgroundColor: 'teal', color: 'white' }}>Add to Favorites</Button>,
+      render: (value, data) => <Button onClick={() => addToFavorites(data)} type='primary' style={{ backgroundColor: 'teal', color: 'white' }}>Add to Favorites</Button>,
     }
   ];
 
   return (
-    <div>
-      <Table columns={columns} dataSource={customers} rowKey='id' />
+    <div className="site-layout-content">
+      <Content style={{ padding: '0 100px' }}>
+        <Table columns={columns} dataSource={customers} rowKey='id' />
+      </Content>
     </div>
   )
 }

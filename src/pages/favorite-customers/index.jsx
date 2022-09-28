@@ -1,7 +1,8 @@
 import { Button, Table } from 'antd';
+import { Content } from 'antd/lib/layout/layout';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromFavoritesAction } from '../../redux/actions/customers.actions';
+import { emptyFavoritesAction, removeFromFavoritesAction } from '../../redux/actions/customers.actions';
 
 const FavoriteCustomers = () => {
 
@@ -10,8 +11,20 @@ const FavoriteCustomers = () => {
   const dispatch = useDispatch();
 
   const handleRemove = (customer) => {
-    dispatch(removeFromFavoritesAction(customer))
+    if (window.confirm('Are you sure??')) {
+      dispatch(removeFromFavoritesAction(customer))
+    }
   }
+
+  const handleRemoveAll = () => {
+    console.log(favoriteCustomers.length);
+    if (favoriteCustomers.length != 0) {
+      if (window.confirm('Are you sure??')) {
+        dispatch(emptyFavoritesAction())
+      }
+    }
+  }
+
   const columns = [
     {
       title: 'Company Name',
@@ -39,12 +52,19 @@ const FavoriteCustomers = () => {
       title: "Remove",
       dataIndex: "id",
       key: "id",
-      render: (value, data) => <Button onClick={() => handleRemove(data)} style={{ backgroundColor: 'red', color: 'white' }}>Remove</Button>,
+      render: (value, data) => <Button onClick={() => handleRemove(data)} type='primary' danger>Remove</Button>,
     }
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={favoriteCustomers} rowKey='id' />
+      <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <h1>Count of Favorit Customers: {favoriteCustomers.length}</h1>
+        <Button onClick={handleRemoveAll} type='primary' danger>Empty All</Button>
+      </div>
+      <Content style={{ padding: '0 100px' }}>
+        <Table columns={columns} dataSource={favoriteCustomers} rowKey='id' />
+      </Content>
+
     </div>
   )
 }

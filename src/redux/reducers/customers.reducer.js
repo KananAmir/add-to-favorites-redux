@@ -6,7 +6,6 @@ export const customerReducer = (state = [], action) => {
             return [...state, action.payload]
 
         case 'REMOVE_FROM_FAVORITES':
-            console.log(state);
             return [...state.filter(q => q.id !== action.payload.id)]
 
         case 'EMPTY_FAVORITES':
