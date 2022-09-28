@@ -1,4 +1,4 @@
-import { Button, Table } from 'antd';
+import { Button, notification, Table } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ const FavoriteCustomers = () => {
   const handleRemove = (customer) => {
     if (window.confirm('Are you sure??')) {
       dispatch(removeFromFavoritesAction(customer))
+      openNotification();
     }
   }
 
@@ -25,6 +26,14 @@ const FavoriteCustomers = () => {
     }
   }
 
+  const openNotification = () => {
+    notification.info({
+      message: 'Customer Removed from Favorites!',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
   const columns = [
     {
       title: 'Company Name',

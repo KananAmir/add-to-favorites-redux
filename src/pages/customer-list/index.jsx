@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { customerServices } from '../../services/requests'
-import { Table, Button } from 'antd';
+import { Table, Button, notification } from 'antd';
 import 'antd/dist/antd.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavoritesAction } from '../../redux/actions/customers.actions';
@@ -20,8 +20,18 @@ const CustomerList = () => {
   const addToFavorites = (customer) => {
     if (!favoriteCustomers.includes(customer)) {
       dispatch(addToFavoritesAction(customer));
+      openNotification();
     }
   }
+
+  const openNotification = () => {
+    notification.success({
+      message: 'Customer added to Favorites Succesfully!',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
 
   const columns = [
     {
