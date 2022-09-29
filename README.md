@@ -1,4 +1,4 @@
-# Rental Demo Website
+# Redux Add to Favorites App
 
 ## 🔗 [**Live Demo**](https://kanan-amir.netlify.app/)
 
